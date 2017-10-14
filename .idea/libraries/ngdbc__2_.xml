@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="ngdbc (2)">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/sample/Lib/ngdbc.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
