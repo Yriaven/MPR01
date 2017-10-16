@@ -4,11 +4,12 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Klasy.Controller">
+<VBox fx:id="vbox" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Klasy.Controller">
    <children>
       <MenuBar>
         <menus>
@@ -35,9 +36,9 @@
                   </Menu>
                   <Menu mnemonicParsing="false" text="Translate...">
                     <items>
-                      <MenuItem fx:id="WMS1" mnemonicParsing="false" onAction="#PowerShellRobocopy1" text="Server" />
-                      <MenuItem fx:id="WMS2" mnemonicParsing="false" onAction="#PowerShellRobocopy2" text="Desktop Client" />
-                        <MenuItem fx:id="catalog" mnemonicParsing="false" onAction="#Tlumaczenia" text="Files" />
+                      <MenuItem fx:id="WMS1" mnemonicParsing="false" onAction="#TranslateServer" text="...Server" />
+                      <MenuItem fx:id="WMS2" mnemonicParsing="false" onAction="#CopyByPowershell" text="...Desktop Client" />
+                        <MenuItem fx:id="catalog" mnemonicParsing="false" onAction="#Tlumaczenia" text="...modify translations" />
                     </items>
                   </Menu>
                   <MenuItem fx:id="logi" mnemonicParsing="false" onAction="#Logi" text="Logs" />
@@ -46,12 +47,16 @@
         </menus>
       </MenuBar>
       <Label fx:id="status" text="Not connected" />
-      <TableView fx:id="tabelka" VBox.vgrow="ALWAYS">
+
+      <TableView fx:id="tabelka" prefHeight="200.0" prefWidth="220.0" VBox.vgrow="ALWAYS">
         <columns>
           <TableColumn fx:id="t1" prefWidth="75.0" text="Item Name" />
           <TableColumn fx:id="t2" prefWidth="75.0" text="Item Code" />
             <TableColumn fx:id="t3" prefWidth="75.0" text="Quantity" />
         </columns>
       </TableView>
+      <ProgressIndicator fx:id="PB" progress="0.0" />
+     
+
    </children>
 </VBox>
