@@ -28,6 +28,13 @@
             <artifactId>jPowerShell</artifactId>
             <version>1.8</version>
         </dependency>
+
+
+        <dependency>
+            <groupId>org.visallo</groupId>
+            <artifactId>visallo-web-plugins-admin-user-property-privileges</artifactId>
+            <version>2.2.1</version>
+        </dependency>
     </dependencies>
     
 </project>

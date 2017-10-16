@@ -14,5 +14,7 @@
     <orderEntry type="library" name="ngdbc (2)" level="project" />
     <orderEntry type="library" name="ngdbc (3)" level="project" />
     <orderEntry type="library" name="Maven: com.profesorfalken:jPowerShell:1.8" level="project" />
+    <orderEntry type="library" name="Maven: org.visallo:visallo-web-plugins-admin-user-property-privileges:2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.10" level="project" />
   </component>
 </module>

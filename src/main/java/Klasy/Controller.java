@@ -1,8 +1,8 @@
 package Klasy;
 
 
-
 import com.profesorfalken.jpowershell.PowerShell;
+import com.profesorfalken.jpowershell.PowerShellNotAvailableException;
 import com.profesorfalken.jpowershell.PowerShellResponse;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,14 +25,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class Controller {
 
 
-
     @FXML
 
     public MenuItem Hana;
     public MenuItem WMS1;
     public MenuItem WMS2;
     public MenuItem WMS3;
-    public MenuItem WM;
+    public MenuItem WMS4;
     public MenuItem Q1;
     public MenuItem Dc;
     public MenuItem d4;
@@ -50,56 +49,45 @@ public class Controller {
     public ObservableList<OITM> OITM_LIST;
 
 
-    public void initialize()
-    {
+    public void initialize() {
         t1.setCellValueFactory(new PropertyValueFactory<>("ItemCode"));
         t2.setCellValueFactory(new PropertyValueFactory<>("ItemName"));
         t3.setCellValueFactory(new PropertyValueFactory<>("OnHand"));
     }
 
 
-    public void WMS ()
-    {
+    public void WMS() {
         try {
 
             Runtime.getRuntime().exec("\"C:\\Program Files (x86)\\CompuTec\\CompuTec WMS Client\\CompuTec.Client.Desktop.exe\"", null, new File("C:\\Program Files (x86)\\CompuTec\\CompuTec WMS Client\\"));
-        }
-
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
 
 
-    public void ConnectToDataBase()
-    {
+    public void ConnectToDataBase() {
 
         try {
 
-            connection = DriverManager.getConnection("jdbc:sap://172.16.0.54:30015/?currentschema=SBOELECTROPOLI","SYSTEM", "");
-        }
-        catch (SQLException e)
-        {
+            connection = DriverManager.getConnection("jdbc:sap://172.16.0.54:30015/?currentschema=SBOELECTROPOLI", "SYSTEM", "xx");
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
 
         }
 
-        if (connection != null)
-        {
+        if (connection != null) {
             JOptionPane.showMessageDialog(null, "Connected");
             Connected = true;
 
-            if (Connected ==true)
-            {
+            if (Connected == true) {
                 status.setText("Connected to SBOELECTROPOLI");
             }
         }
     }
 
 
-    public void CheckDatabaseConnection()
-    {
+    public void CheckDatabaseConnection() {
 
 
         try {
@@ -117,19 +105,14 @@ public class Controller {
                 status.setText(line + "\n");
 
             }
-        }
-
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e.getMessage() + "\n" + "Tryb bezpośredniego połączenia z bazą danych jest wyłączony.");
 
         }
     }
 
 
-
-    public void TestQuery()
-    {   //testowe query
+    public void TestQuery() {   //testowe query
         try {
 
 
@@ -143,8 +126,7 @@ public class Controller {
             OITM_LIST = FXCollections.observableArrayList();  //ważne
 
 
-            while (rs.next())
-            {
+            while (rs.next()) {
                 OITM obiekt = new OITM();
                 obiekt.ItemName.set(rs.getString("ItemName"));
                 obiekt.ItemCode.set(rs.getString("ItemCode"));
@@ -154,29 +136,19 @@ public class Controller {
             }
 
             tabelka.setItems(OITM_LIST);  //parametrem TableView jest Observable list
-        }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
 
-        catch (SQLException e)
-        {
-            JOptionPane.showMessageDialog(null,e.getMessage());
-
-        }
-
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Not connected");
         }
     }
 
-    public void DisConnect()
-    {
+    public void DisConnect() {
 
-        if (connection==null)
-        {
+        if (connection == null) {
             JOptionPane.showMessageDialog(null, "You have already disconnected !");
-        }
-
-        else {
+        } else {
             try {
                 connection = null;
                 JOptionPane.showMessageDialog(null, "Disconnected");
@@ -189,66 +161,45 @@ public class Controller {
     }
 
 
-
-    public void Logi()
-    {
+    public void Logi() {
         try {
             Desktop.getDesktop().open(new File("C:\\ProgramData\\CompuTec\\CompuTec WMS\\Server"));
 
-        }
-
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
-        }
-
-        catch (RuntimeException e1)
-        {
+        } catch (RuntimeException e1) {
             JOptionPane.showMessageDialog(null, e1.getMessage());
         }
     }
 
-    public void Tlumaczenia ()
-    {
+    public void Tlumaczenia() {
         try {
             Desktop.getDesktop().open(new File("C:\\Users\\pbetkows_admin\\Desktop\\Tłumaczenia"));
-
-        }
-
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
-        catch (RuntimeException e1)
-        {
-            JOptionPane.showMessageDialog(null, e1.getMessage());
-        }
+
     }
 
-    public void CustomConfig ()
-    {
+    public void CustomConfig() {
         //zwrócić uwagę na command
 
 
         try {
 
             Runtime.getRuntime().exec("\"C:\\Program Files\\CompuTec\\CompuTec WMS Server\\CustomConfiguration\\CustomCofiguration.exe\"", null, new File("C:\\Program Files\\CompuTec\\CompuTec WMS Server\\CustomConfiguration\\"));
-        }
-
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e.getMessage() + "\n" + "Trzeba jeszcze skonfigurować uprawnienia...");
         }
     }
 
-    public void PowerShellRobocopy1()
-    {
+    public void PowerShellRobocopy1() {
         String source = "\"C:\\Users\\pbetkows_admin\\Desktop\\Tłumaczenia\\Nazwy pól\"";
         String dest = "\"C:\\Program Files\\CompuTec\\CompuTec WMS Server\\Translations\"";
         String file = "polish.translations";
 
-        PowerShellResponse rs = PowerShell.executeSingleCommand("Robocopy"+ " " +source + " " + dest + " " +file);
+        PowerShellResponse rs = PowerShell.executeSingleCommand("Robocopy" + " " + source + " " + dest + " " + file);
         JOptionPane.showMessageDialog(null, rs.getCommandOutput());
 
     }
@@ -288,17 +239,17 @@ public class Controller {
 //        }
 //    }
 
-    public void PowerShellRobocopy2()
-    {
+    public void PowerShellRobocopy2() {
         String source = "\"C:\\Users\\pbetkows_admin\\Desktop\\Tłumaczenia\\Nazwy opcji\"";
         String dest = "\"C:\\Program Files\\CompuTec\\CompuTec WMS Server\\Translations\"";
         String file = "pl.translations";
 
-        PowerShellResponse rs = PowerShell.executeSingleCommand("Robocopy"+ " " +source + " " + dest + " " +file);
+        PowerShellResponse rs = PowerShell.executeSingleCommand("Robocopy" + " " + source + " " + dest + " " + file);
         JOptionPane.showMessageDialog(null, rs.getCommandOutput());
     }
 
-//    public void RestoreDesktopClient() {
+
+    //    public void RestoreDesktopClient() {
 //
 //        //skaner na desktopie bez powershella
 //
@@ -334,7 +285,57 @@ public class Controller {
 //
 //
 //        }
+    public void RestartWMSServer()
+    {
+        try
+        {
+            PowerShell powerShell = PowerShell.openSession();
+            PowerShellResponse rs = null;
+            String script = "/scripts/restartWMS.ps1";
+
+
+            BufferedReader srcReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(script)));
+            rs = powerShell.executeScript(srcReader);
+            JOptionPane.showMessageDialog(null, "WMS Server restarted");
+
+            if (powerShell != null)
+            {
+                powerShell.close();
+            }
+        }
+        catch (PowerShellNotAvailableException e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
 
     }
+
+    public void RestartLicenseServer()
+    {
+        try
+        {
+            PowerShell powerShell = PowerShell.openSession();
+            PowerShellResponse rs = null;
+            String script = "/scripts/restartLicense.ps1";
+
+
+            BufferedReader srcReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(script)));
+            rs = powerShell.executeScript(srcReader);
+            JOptionPane.showMessageDialog(null, "License Server restarted");
+
+            if (powerShell != null)
+            {
+                powerShell.close();
+            }
+        }
+        catch (PowerShellNotAvailableException e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+
+
+}
+
 
 

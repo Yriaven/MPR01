@@ -20,7 +20,6 @@ public class Main extends Application {
         primaryStage.getIcons().add(new Image("/images/ikona.PNG"));
         primaryStage.setResizable(false);
 
-
     }
 
 

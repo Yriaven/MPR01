@@ -8,7 +8,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Klasy.Controller">
+<VBox xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Klasy.Controller">
    <children>
       <MenuBar>
         <menus>
@@ -27,7 +27,12 @@
           <Menu mnemonicParsing="false" text="WMS">
             <items>
                   <MenuItem fx:id="WM" mnemonicParsing="false" onAction="#WMS" text="Run WMS" />
-                  <MenuItem fx:id="WMS3" disable="true" mnemonicParsing="false" onAction="#CustomConfig" text="Custom Configuration" />
+                  <Menu mnemonicParsing="false" text="Restart...">
+                    <items>
+                        <MenuItem fx:id="WMS3" mnemonicParsing="false" onAction="#RestartWMSServer" text="...WMS Server" />
+                        <MenuItem fx:id="WMS4" mnemonicParsing="false" onAction="#RestartLicenseServer" text="...License Server" />
+                    </items>
+                  </Menu>
                   <Menu mnemonicParsing="false" text="Translate...">
                     <items>
                       <MenuItem fx:id="WMS1" mnemonicParsing="false" onAction="#PowerShellRobocopy1" text="Server" />

@@ -3,9 +3,11 @@
     <output-path>$PROJECT_DIR$/out/artifacts/MPR01_jar</output-path>
     <root id="archive" name="MPR01.jar">
       <element id="module-output" name="MPR01" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.10/slf4j-api-1.7.10.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/visallo/visallo-web-plugins-admin-user-property-privileges/2.2.1/visallo-web-plugins-admin-user-property-privileges-2.2.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/profesorfalken/jPowerShell/1.8/jPowerShell-1.8.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/resources/drivers/ngdbc.jar" path-in-jar="/" />
       <element id="library" level="project" name="ngdbc (2)" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/resources/drivers/ngdbc.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
