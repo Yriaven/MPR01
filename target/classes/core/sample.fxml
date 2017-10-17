@@ -15,14 +15,14 @@
         <menus>
           <Menu mnemonicParsing="false" text="Database">
             <items>
-              <MenuItem fx:id="Hana" mnemonicParsing="false" onAction="#ConnectToDataBase" text="Connect to Hana" />
-                  <MenuItem fx:id="d4" mnemonicParsing="false" onAction="#CheckDatabaseConnection" text="Check the Connection" />
+              <MenuItem fx:id="Hana" mnemonicParsing="false" onAction="#connectToDataBase" text="Connect to Hana" />
+                  <MenuItem fx:id="d4" mnemonicParsing="false" onAction="#checkDatabaseConnection" text="Check the Connection" />
                   <Menu mnemonicParsing="false" text="Queries:">
                     <items>
-                      <MenuItem fx:id="Q1" mnemonicParsing="false" onAction="#TestQuery" text="Test query" />
+                      <MenuItem fx:id="Q1" mnemonicParsing="false" onAction="#testQuery" text="Test query" />
                     </items>
                   </Menu>
-                  <MenuItem fx:id="Dc" mnemonicParsing="false" onAction="#DisConnect" text="Disconnect " />
+                  <MenuItem fx:id="Dc" mnemonicParsing="false" onAction="#disConnect" text="Disconnect " />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="WMS">
@@ -30,18 +30,18 @@
                   <MenuItem fx:id="WM" mnemonicParsing="false" onAction="#WMS" text="Run WMS" />
                   <Menu mnemonicParsing="false" text="Restart...">
                     <items>
-                        <MenuItem fx:id="WMS3" mnemonicParsing="false" onAction="#RestartWMSServer" text="...WMS Server" />
-                        <MenuItem fx:id="WMS4" mnemonicParsing="false" onAction="#RestartLicenseServer" text="...License Server" />
+                        <MenuItem fx:id="WMS3" mnemonicParsing="false" onAction="#restartWMSServer" text="...WMS Server" />
+                        <MenuItem fx:id="WMS4" mnemonicParsing="false" onAction="#restartLicenseServer" text="...License Server" />
                     </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Translate...">
                     <items>
-                      <MenuItem fx:id="WMS1" mnemonicParsing="false" onAction="#TranslateServer" text="...Server" />
-                      <MenuItem fx:id="WMS2" mnemonicParsing="false" onAction="#CopyByPowershell" text="...Desktop Client" />
-                        <MenuItem fx:id="catalog" mnemonicParsing="false" onAction="#Tlumaczenia" text="...modify translations" />
+                      <MenuItem fx:id="WMS1" mnemonicParsing="false" onAction="#translateServer" text="...Server" />
+                      <MenuItem fx:id="WMS2" mnemonicParsing="false" onAction="#copyByPowershell" text="...Desktop Client" />
+                        <MenuItem fx:id="catalog" mnemonicParsing="false" onAction="#tlumaczenia" text="...modify translations" />
                     </items>
                   </Menu>
-                  <MenuItem fx:id="logi" mnemonicParsing="false" onAction="#Logi" text="Logs" />
+                  <MenuItem fx:id="logi" mnemonicParsing="false" onAction="#logi" text="Logs" />
             </items>
           </Menu>
         </menus>

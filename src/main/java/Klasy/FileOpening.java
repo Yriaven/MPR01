@@ -8,7 +8,7 @@ import java.io.IOException;
 public class FileOpening {
     //opening folders and files...
 
-    public static void OpenWMS()
+    public static void openWMS()
     {
         try {
 
@@ -18,7 +18,7 @@ public class FileOpening {
         }
     }
 
-    public static void Logi()
+    public static void logi()
     {
         try {
             Desktop.getDesktop().open(new File("C:\\ProgramData\\CompuTec\\CompuTec WMS\\Server"));
@@ -30,7 +30,7 @@ public class FileOpening {
         }
     }
 
-    public static void TranslationFiles()
+    public static void translationFiles()
     {
         try {
             Desktop.getDesktop().open(new File("C:\\Users\\pbetkows_admin\\Desktop\\Tłumaczenia"));

@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
 
 public class PowerShellCommands {
 
-    public static void TranslateDesktopClient() {
+    public static void translateDesktopClient() {
         String source = "\"C:\\Users\\pbetkows_admin\\Desktop\\Tłumaczenia\\Nazwy opcji\"";
         String dest = "\"C:\\Program Files (x86)\\CompuTec\\CompuTec WMS Client\"";
         String file = "pl.translations";
@@ -22,7 +22,7 @@ public class PowerShellCommands {
         JOptionPane.showMessageDialog(null, rs.getCommandOutput());
     }
 
-    public static void TranslateServer() {
+    public static void translateServer() {
 
 
         String source = "\"C:\\Users\\pbetkows_admin\\Desktop\\Tłumaczenia\\Nazwy pól\"";
@@ -34,7 +34,7 @@ public class PowerShellCommands {
 
     }
 
-    public void RestoreWMSServer() {
+    public void restoreWMSServer() {
         try {
             PowerShell powerShell = PowerShell.openSession();
             PowerShellResponse rs = null;
@@ -55,7 +55,7 @@ public class PowerShellCommands {
     }
 
 
-    public void RestoreLicenseServer()
+    public void restoreLicenseServer()
     {
         try {
             PowerShell powerShell = PowerShell.openSession();

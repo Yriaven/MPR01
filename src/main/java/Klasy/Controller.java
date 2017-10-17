@@ -1,25 +1,18 @@
 package Klasy;
 
 
-import com.profesorfalken.jpowershell.PowerShell;
-import com.profesorfalken.jpowershell.PowerShellNotAvailableException;
-import com.profesorfalken.jpowershell.PowerShellResponse;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.*;
 import java.net.*;
 import java.sql.*;
 
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 //awt powoduje błędy
@@ -68,11 +61,11 @@ public class Controller {
 
 
     public void WMS() {
-       FileOpening.OpenWMS();
+       FileOpening.openWMS();
     }
 
 
-    public void ConnectToDataBase() {
+    public void connectToDataBase() {
         check = false;
         PB.setProgress(0);
         try {
@@ -97,7 +90,7 @@ public class Controller {
     }
 
 
-    public void CheckDatabaseConnection() {
+    public void checkDatabaseConnection() {
         PB.setProgress(0);
 
         try {
@@ -126,7 +119,7 @@ public class Controller {
     }
 
 
-    public void TestQuery() {   //testowe query
+    public void testQuery() {   //testowe query
         PB.setProgress(0);
         check = false;
         try {
@@ -164,7 +157,7 @@ public class Controller {
         }
     }
 
-    public void DisConnect() {
+    public void disConnect() {
         PB.setProgress(0);
         if (connection == null) {
             JOptionPane.showMessageDialog(null, "You have already disconnected !");
@@ -181,49 +174,45 @@ public class Controller {
     }
 
 
-    public void Logi() {
-        FileOpening.Logi();
+    public void logi() {
+        FileOpening.logi();
     }
 
-    public void Tlumaczenia() {
+    public void tlumaczenia() {
 
-        FileOpening.TranslationFiles();
+        FileOpening.translationFiles();
     }
 
 
 
-    public void TranslateServer()
+    public void translateServer()
     {
-        PowerShellCommands.TranslateServer();
+        PowerShellCommands.translateServer();
         PB.setProgress(1);
     }
 
 
 
-    public void CopyByPowershell()
+    public void copyByPowershell()
     {
-        PowerShellCommands.TranslateDesktopClient();
+        PowerShellCommands.translateDesktopClient();
         PB.setProgress(1);
     }
 
 
-
-
-
-
-    public void RestartWMSServer()
+    public void restartWMSServer()
     {
         pwObject = new PowerShellCommands();
-        pwObject.RestoreWMSServer();
+        pwObject.restoreWMSServer();
         PB.setProgress(1);
 
     }
 
 
-    public void RestartLicenseServer()
+    public void restartLicenseServer()
     {
         pwObject = new PowerShellCommands();
-        pwObject.RestoreLicenseServer();
+        pwObject.restoreLicenseServer();
         PB.setProgress(1);
     }
 
