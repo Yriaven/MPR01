@@ -55,6 +55,8 @@ public class PowerShellCommands {
     }
 
 
+
+
     public void restoreLicenseServer()
     {
         try {
@@ -76,6 +78,34 @@ public class PowerShellCommands {
 
         }
     }
+
+
+    public void SecureWMSServer()
+    {
+        try {
+            PowerShell powerShell = PowerShell.openSession();
+            PowerShellResponse rs = null;
+            String script = "/scripts/restartWMS.ps1";  //podmienić skrypt
+
+
+            BufferedReader srcReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(script)));
+            rs = powerShell.executeScript(srcReader);
+
+            JOptionPane.showMessageDialog(null, "Script executed");
+
+
+            if (powerShell != null) {
+                powerShell.close();
+
+            }
+        } catch (PowerShellNotAvailableException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+        }
+    }
+
+    //TODO wgrac skrypt
+
 }
 
 

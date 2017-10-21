@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="vbox" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Klasy.Controller">
+<VBox fx:id="vbox" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Klasy.Controller">
    <children>
       <MenuBar>
         <menus>
@@ -44,11 +44,20 @@
                   <MenuItem fx:id="logi" mnemonicParsing="false" onAction="#logi" text="Logs" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Powershell">
+               <items>
+                  <Menu mnemonicParsing="false" text="Scripts">
+                    <items>
+                      <MenuItem fx:id="PS1" mnemonicParsing="false" onAction="#SecureWMS" text="Secure WMS Server" />
+                    </items>
+                  </Menu>
+               </items>
+            </Menu>
         </menus>
       </MenuBar>
       <Label fx:id="status" text="Not connected" />
 
-      <TableView fx:id="tabelka" prefHeight="200.0" prefWidth="220.0" VBox.vgrow="ALWAYS">
+      <TableView fx:id="tabelka" onMouseClicked="#test" prefHeight="200.0" prefWidth="220.0" VBox.vgrow="ALWAYS">
         <columns>
           <TableColumn fx:id="t1" prefWidth="75.0" text="Item Name" />
           <TableColumn fx:id="t2" prefWidth="75.0" text="Item Code" />
@@ -56,7 +65,7 @@
         </columns>
       </TableView>
       <ProgressIndicator fx:id="PB" progress="0.0" />
-     
+
 
    </children>
 </VBox>

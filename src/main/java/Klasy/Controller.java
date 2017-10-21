@@ -32,6 +32,7 @@ public class Controller {
     public MenuItem d4;
     public MenuItem logi;
     public MenuItem catalog;
+    public MenuItem PS1;
     public Label status;
     public TableView<OITM> tabelka;
     public TableColumn<Object, Object> t1;
@@ -67,9 +68,8 @@ public class Controller {
 
     public void connectToDataBase() {
         check = false;
-        PB.setProgress(0);
         try {
-            connection = DriverManager.getConnection("jdbc:sap://172.16.0.54:30015/?currentschema=SBOELECTROPOLI", "SYSTEM", "0");
+            connection = DriverManager.getConnection("jdbc:sap://172.16.0.54:30015/?currentschema=SBOELECTROPOLI", "SYSTEM", "k");
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -80,18 +80,16 @@ public class Controller {
 
             JOptionPane.showMessageDialog(null, "Connected");
             check = true;
-            PB.setProgress(1);
 
             if (check == true) {
                 status.setText("Connected to SBOELECTROPOLI");
-                PB.setProgress(1);
             }
         }
     }
 
 
     public void checkDatabaseConnection() {
-        PB.setProgress(0);
+
 
         try {
 
@@ -109,7 +107,6 @@ public class Controller {
                 status.setText(line + "\n");
 
             }
-            PB.setProgress(1);
 
 
         } catch (IOException e) {
@@ -120,8 +117,7 @@ public class Controller {
 
 
     public void testQuery() {   //testowe query
-        PB.setProgress(0);
-        check = false;
+
         try {
 
 
@@ -146,19 +142,17 @@ public class Controller {
 
             tabelka.setItems(OITM_LIST);  //parametrem TableView jest Observable list
 
-            PB.setProgress(1);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
-            PB.setProgress(0);
+
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Not connected");
-            PB.setProgress(0);
+
         }
     }
 
     public void disConnect() {
-        PB.setProgress(0);
         if (connection == null) {
             JOptionPane.showMessageDialog(null, "You have already disconnected !");
         } else {
@@ -188,7 +182,7 @@ public class Controller {
     public void translateServer()
     {
         PowerShellCommands.translateServer();
-        PB.setProgress(1);
+
     }
 
 
@@ -196,7 +190,7 @@ public class Controller {
     public void copyByPowershell()
     {
         PowerShellCommands.translateDesktopClient();
-        PB.setProgress(1);
+
     }
 
 
@@ -204,7 +198,6 @@ public class Controller {
     {
         pwObject = new PowerShellCommands();
         pwObject.restoreWMSServer();
-        PB.setProgress(1);
 
     }
 
@@ -213,7 +206,24 @@ public class Controller {
     {
         pwObject = new PowerShellCommands();
         pwObject.restoreLicenseServer();
+    }
+
+    public void SecureWMS ()
+    {
+        PowerShellCommands powerShellCommands = new PowerShellCommands();
+
+        powerShellCommands.SecureWMSServer();
         PB.setProgress(1);
+    }
+
+    public void test()
+
+    {
+        if (tabelka.getSelectionModel().getSelectedItem() != null)
+        {
+            OITM obj =  tabelka.getSelectionModel().getSelectedItem();
+            System.out.println(String.valueOf(obj.getItemCode()));
+        }
     }
 
 

@@ -14,8 +14,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/core/sample.fxml"));
-        primaryStage.setTitle("EP Sap Center");
-        primaryStage.setScene(new Scene(root, 300, 300));
+        primaryStage.setTitle("The Controller");
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
         primaryStage.getIcons().add(new Image("/images/ikona.PNG"));
         primaryStage.setResizable(false);

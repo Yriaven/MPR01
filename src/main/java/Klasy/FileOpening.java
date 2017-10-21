@@ -40,4 +40,6 @@ public class FileOpening {
         }
     }
 
+    //TODO Poprawić kopiowanie
+
 }
