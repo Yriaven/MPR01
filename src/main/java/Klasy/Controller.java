@@ -27,6 +27,7 @@ public class Controller {
     public MenuItem WMS2;
     public MenuItem WMS3;
     public MenuItem WMS4;
+    public MenuItem WMS5;
     public MenuItem Q1;
     public MenuItem Dc;
     public MenuItem d4;
@@ -52,7 +53,7 @@ public class Controller {
     public void initialize() {
         t1.setCellValueFactory(new PropertyValueFactory<>("ItemCode"));
         t2.setCellValueFactory(new PropertyValueFactory<>("ItemName"));
-        t3.setCellValueFactory(new PropertyValueFactory<>("OnHand"));
+        t3.setCellValueFactory(new PropertyValueFactory<>("PrinterStatus"));
         PB.setProgress(0);
         vbox.setStyle(Styles.color1);
 
@@ -224,6 +225,12 @@ public class Controller {
             OITM obj =  tabelka.getSelectionModel().getSelectedItem();
             System.out.println(String.valueOf(obj.getItemCode()));
         }
+    }
+
+    public void secureLicenseServer()
+    {
+        PowerShellCommands powerShellCommands = new PowerShellCommands();
+        powerShellCommands.secureLicenseServer();
     }
 
 

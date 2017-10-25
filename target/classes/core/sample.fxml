@@ -48,6 +48,7 @@
                <items>
                   <Menu mnemonicParsing="false" text="Scripts">
                     <items>
+                        <MenuItem fx:id="WMS5" mnemonicParsing="false" onAction="#secureLicenseServer" text="Secure License Server" />
                       <MenuItem fx:id="PS1" mnemonicParsing="false" onAction="#SecureWMS" text="Secure WMS Server" />
                     </items>
                   </Menu>

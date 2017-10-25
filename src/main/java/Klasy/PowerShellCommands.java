@@ -85,7 +85,7 @@ public class PowerShellCommands {
         try {
             PowerShell powerShell = PowerShell.openSession();
             PowerShellResponse rs = null;
-            String script = "/scripts/restartWMS.ps1";  //podmienić skrypt
+            String script = "/scripts/sendmail.ps1";  //podmienić skrypt
 
 
             BufferedReader srcReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(script)));
@@ -104,7 +104,29 @@ public class PowerShellCommands {
         }
     }
 
-    //TODO wgrac skrypt
+    public void secureLicenseServer()
+    {
+        try {
+            PowerShell powerShell = PowerShell.openSession();
+            PowerShellResponse rs = null;
+            String script = "/scripts/secureLicense.ps1";  //podmienić skrypt
+
+
+            BufferedReader srcReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(script)));
+            rs = powerShell.executeScript(srcReader);
+
+            JOptionPane.showMessageDialog(null, "Script executed");
+
+
+            if (powerShell != null) {
+                powerShell.close();
+
+            }
+        } catch (PowerShellNotAvailableException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+        }
+    }
 
 }
 
