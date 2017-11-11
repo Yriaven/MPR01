@@ -2,7 +2,8 @@ package Klasy;
 
 import javax.swing.*;
 import java.io.*;
-
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 
 public class Unused {
@@ -61,14 +62,14 @@ public class Unused {
         }
     }
 
-    public void RestoreServer() {
+    public static void RestoreServer() {
 
         //kopiowanie bez powershella
         InputStream inStream = null;
         OutputStream ouStream = null;
 
         //ścieżka do serwerów
-        String ServerSource = "C:\\Users\\pbetkows_admin\\Desktop\\Tłumaczenia\\Nazwy_pól\\polish.translations";
+        String ServerSource = "C:\\Users\\pbetkows_admin\\Desktop\\Tłumaczenia\\Nazwy pól\\polish.translations";
         String ServerDest = "C:\\Program Files\\CompuTec\\CompuTec WMS Server\\Translations\\polish.translations";
 
         try {
@@ -95,6 +96,40 @@ public class Unused {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
+
+    public static String checkConnection (String ip)
+    {
+        boolean status = false;
+        String connected = "request timed out";
+
+        InetAddress IPAdress = null;
+        try {
+
+            IPAdress = InetAddress.getByName(ip);
+            status = IPAdress.isReachable(1000);
+
+            if (status == true)
+            {
+                return connected = "online";
+            }
+
+        }
+
+        catch (UnknownHostException e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
+        catch (IOException e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
+        return connected;
+
+    }
+
+
 
 
 

@@ -1,72 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="vbox" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Klasy.Controller">
+<HBox xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Klasy.Controller">
    <children>
-      <MenuBar>
-        <menus>
-          <Menu mnemonicParsing="false" text="Database">
-            <items>
-              <MenuItem fx:id="Hana" mnemonicParsing="false" onAction="#connectToDataBase" text="Connect to Hana" />
-                  <MenuItem fx:id="d4" mnemonicParsing="false" onAction="#checkDatabaseConnection" text="Check the Connection" />
-                  <Menu mnemonicParsing="false" text="Queries:">
-                    <items>
-                      <MenuItem fx:id="Q1" mnemonicParsing="false" onAction="#testQuery" text="Test query" />
-                    </items>
+      <VBox fx:id="vbox" prefHeight="400.0" prefWidth="300.0">
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="Database">
+                  <items>
+                    <MenuItem fx:id="Hana" mnemonicParsing="false" onAction="#connectToDataBase" text="Connect to Hana" />
+                        <MenuItem fx:id="d4" mnemonicParsing="false" onAction="#checkDatabaseConnection" text="Check the Connection" />
+                        <MenuItem fx:id="Dc" mnemonicParsing="false" onAction="#disConnect" text="Disconnect " />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="WMS">
+                  <items>
+                        <MenuItem fx:id="WM" mnemonicParsing="false" onAction="#WMS" text="Run WMS" />
+                        <Menu mnemonicParsing="false" text="Restart...">
+                          <items>
+                              <MenuItem fx:id="WMS3" mnemonicParsing="false" onAction="#restartWMSServer" text="...WMS Server" />
+                              <MenuItem fx:id="WMS4" mnemonicParsing="false" onAction="#restartLicenseServer" text="...License Server" />
+                          </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Translate...">
+                          <items>
+                            <MenuItem fx:id="WMS1" mnemonicParsing="false" onAction="#translateServer" text="...Server" />
+                            <MenuItem fx:id="WMS2" mnemonicParsing="false" onAction="#copyByPowershell" text="...Desktop Client" />
+                              <MenuItem fx:id="catalog" mnemonicParsing="false" onAction="#tlumaczenia" text="...modify translations" />
+                          </items>
+                        </Menu>
+                        <MenuItem fx:id="logi" mnemonicParsing="false" onAction="#logi" text="Logs" />
+                  </items>
+                </Menu>
+                  <Menu mnemonicParsing="false" text="Powershell">
+                     <items>
+                        <Menu mnemonicParsing="false" text="Scripts">
+                          <items>
+                              <MenuItem fx:id="WMS5" mnemonicParsing="false" onAction="#secureLicenseServer" text="Secure License Server" />
+                            <MenuItem fx:id="PS1" mnemonicParsing="false" onAction="#SecureWMS" text="Secure WMS Server" />
+                          </items>
+                        </Menu>
+                     </items>
                   </Menu>
-                  <MenuItem fx:id="Dc" mnemonicParsing="false" onAction="#disConnect" text="Disconnect " />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="WMS">
-            <items>
-                  <MenuItem fx:id="WM" mnemonicParsing="false" onAction="#WMS" text="Run WMS" />
-                  <Menu mnemonicParsing="false" text="Restart...">
-                    <items>
-                        <MenuItem fx:id="WMS3" mnemonicParsing="false" onAction="#restartWMSServer" text="...WMS Server" />
-                        <MenuItem fx:id="WMS4" mnemonicParsing="false" onAction="#restartLicenseServer" text="...License Server" />
-                    </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Translate...">
-                    <items>
-                      <MenuItem fx:id="WMS1" mnemonicParsing="false" onAction="#translateServer" text="...Server" />
-                      <MenuItem fx:id="WMS2" mnemonicParsing="false" onAction="#copyByPowershell" text="...Desktop Client" />
-                        <MenuItem fx:id="catalog" mnemonicParsing="false" onAction="#tlumaczenia" text="...modify translations" />
-                    </items>
-                  </Menu>
-                  <MenuItem fx:id="logi" mnemonicParsing="false" onAction="#logi" text="Logs" />
-            </items>
-          </Menu>
-            <Menu mnemonicParsing="false" text="Powershell">
-               <items>
-                  <Menu mnemonicParsing="false" text="Scripts">
-                    <items>
-                        <MenuItem fx:id="WMS5" mnemonicParsing="false" onAction="#secureLicenseServer" text="Secure License Server" />
-                      <MenuItem fx:id="PS1" mnemonicParsing="false" onAction="#SecureWMS" text="Secure WMS Server" />
-                    </items>
-                  </Menu>
-               </items>
-            </Menu>
-        </menus>
-      </MenuBar>
-      <Label fx:id="status" text="Not connected" />
+              </menus>
+            </MenuBar>
+            <Label fx:id="status" text="Not connected" />
 
-      <TableView fx:id="tabelka" onMouseClicked="#test" prefHeight="200.0" prefWidth="220.0" VBox.vgrow="ALWAYS">
-        <columns>
-          <TableColumn fx:id="t1" prefWidth="75.0" text="Item Name" />
-          <TableColumn fx:id="t2" prefWidth="75.0" text="Item Code" />
-            <TableColumn fx:id="t3" prefWidth="75.0" text="Quantity" />
-        </columns>
-      </TableView>
-      <ProgressIndicator fx:id="PB" progress="0.0" />
+            <TableView fx:id="tabelka" prefHeight="200.0" prefWidth="150.0" VBox.vgrow="ALWAYS">
+              <columns>
+                <TableColumn fx:id="t1" prefWidth="100.0" text="Server" />
+                <TableColumn fx:id="t2" prefWidth="100.0" text="IP" />
+                  <TableColumn fx:id="t3" prefWidth="100.0" text="Status" />
+              </columns>
+            </TableView>
+
+         </children>
+      </VBox>
+      <AnchorPane prefHeight="200.0" prefWidth="100.0">
+         <children>
+             <Button fx:id="WMSButton" layoutY="65.0" mnemonicParsing="false" prefWidth="100" text="WMS" onAction="#WMS" />
+             <Button fx:id="LogsButton" layoutY="95.0" mnemonicParsing="false" prefWidth="100" text="Logi" onAction="#logi" />
+             <Button fx:id="TranslateButton" layoutY="125.0" mnemonicParsing="false" prefWidth="100" text="Tłumacz" onAction="#oldTranslate" />
+             <Button fx:id="RestartWMSButton" layoutY="155.0" mnemonicParsing="false" prefWidth="100" text="Restart WMS" onAction="#restartWMSServer" />
+             <Button fx:id="RestartLicenseButton" layoutY="190.0" mnemonicParsing="false" prefWidth="100" text="Restart license" onAction="#restartLicenseServer" />
+             <Button fx:id="SapServerButton" layoutY="225.0" mnemonicParsing="false" prefWidth="100" text="Serwery" onAction="#refresh" />
+             <Button fx:id="SecureLicenseButton" layoutY="280.0" mnemonicParsing="false" prefWidth="100" text="Monit WMS" onAction="#SecureWMS" />
+             <Button fx:id="SecureMWSButton" layoutY="310.0" mnemonicParsing="false" prefWidth="100" text="Monit License" onAction="#secureLicenseServer" />
+
+         </children></AnchorPane>
+
 
 
    </children>
-</VBox>
+</HBox>

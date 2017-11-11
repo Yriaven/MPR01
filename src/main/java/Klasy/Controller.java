@@ -9,6 +9,7 @@ import java.io.*;
 import java.net.*;
 import java.sql.*;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
@@ -35,28 +36,35 @@ public class Controller {
     public MenuItem catalog;
     public MenuItem PS1;
     public Label status;
-    public TableView<OITM> tabelka;
+    public TableView<Servers> tabelka;
     public TableColumn<Object, Object> t1;
     public TableColumn<Object, Object> t2;
     public TableColumn<Object, Object> t3;
-    public ProgressIndicator PB;
     private boolean check;
     public VBox vbox;
+    @FXML Button LogsButton;
+    @FXML Button WMSButton;
+    @FXML Button TranslateButton;
+    @FXML Button RestartWMSButton;
+    @FXML Button RestartLicenseButton;
+    @FXML Button SecureWMSButton;
+    @FXML Button SecureLicenseButton;
+    @FXML Button SapServerButton;
+
     PowerShellCommands pwObject;
+    String queryservers = "SELECT \"Name\", \"U_IP\" FROM \"@SERVERS\"";
 
 
 
     Connection connection = null;
-    public ObservableList<OITM> OITM_LIST;
+    public ObservableList<Servers> OITM_LIST;
 
 
     public void initialize() {
-        t1.setCellValueFactory(new PropertyValueFactory<>("ItemCode"));
-        t2.setCellValueFactory(new PropertyValueFactory<>("ItemName"));
-        t3.setCellValueFactory(new PropertyValueFactory<>("PrinterStatus"));
-        PB.setProgress(0);
+        t1.setCellValueFactory(new PropertyValueFactory<>("ServerName"));
+        t2.setCellValueFactory(new PropertyValueFactory<>("ServerIP"));
+        t3.setCellValueFactory(new PropertyValueFactory<>("ServerStatus"));
         vbox.setStyle(Styles.color1);
-
 
 
     }
@@ -70,7 +78,8 @@ public class Controller {
     public void connectToDataBase() {
         check = false;
         try {
-            connection = DriverManager.getConnection("jdbc:sap://172.16.0.54:30015/?currentschema=SBOELECTROPOLI", "SYSTEM", "k");
+            connection = DriverManager.getConnection("jdbc:sap://172.16.0.54:30015/?currentschema=SBOELECTROPOLI", "SYSTEM", "Ep*4321#");
+            System.out.println(connection);
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -117,28 +126,22 @@ public class Controller {
     }
 
 
-    public void testQuery() {   //testowe query
+    public void refresh() {   //testowe query
 
         try {
 
-
+            connectToDataBase();
             Statement st = connection.createStatement();
-            String query = "SELECT \"ItemCode\", \"ItemName\", \"OnHand\" \n" +
-                    "FROM OITM \n" +
-                    "WHERE \"OnHand\" > 0 AND \"ItemCode\" LIKE 'WG-%'\n" +
-                    " ORDER BY \"ItemName\"";
-
-            ResultSet rs = st.executeQuery(query);
+            ResultSet rs = st.executeQuery(queryservers);
             OITM_LIST = FXCollections.observableArrayList();  //ważne
 
 
             while (rs.next()) {
-                OITM obiekt = new OITM();
-                obiekt.ItemName.set(rs.getString("ItemName"));
-                obiekt.ItemCode.set(rs.getString("ItemCode"));
-                obiekt.OnHand.set(rs.getInt(3));
-
-                OITM_LIST.add(obiekt);  //dodajemy obiekty do observable list
+                Servers servers = new Servers();
+                servers.ServerName.set(rs.getString("Name"));
+                servers.ServerIP.set(rs.getString("U_IP"));
+                servers.ServerStatus.set(Unused.checkConnection(servers.getServerIP()));
+                OITM_LIST.add(servers);  //dodajemy obiekty do observable list
             }
 
             tabelka.setItems(OITM_LIST);  //parametrem TableView jest Observable list
@@ -214,23 +217,19 @@ public class Controller {
         PowerShellCommands powerShellCommands = new PowerShellCommands();
 
         powerShellCommands.SecureWMSServer();
-        PB.setProgress(1);
     }
 
-    public void test()
 
-    {
-        if (tabelka.getSelectionModel().getSelectedItem() != null)
-        {
-            OITM obj =  tabelka.getSelectionModel().getSelectedItem();
-            System.out.println(String.valueOf(obj.getItemCode()));
-        }
-    }
 
     public void secureLicenseServer()
     {
         PowerShellCommands powerShellCommands = new PowerShellCommands();
         powerShellCommands.secureLicenseServer();
+    }
+
+    public void oldTranslate()
+    {
+        Unused.RestoreServer();
     }
 
 
