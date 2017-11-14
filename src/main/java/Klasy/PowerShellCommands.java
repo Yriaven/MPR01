@@ -47,6 +47,7 @@ public class PowerShellCommands {
 
             if (powerShell != null) {
                 powerShell.close();
+                JOptionPane.showMessageDialog(null, "Script executed");
 
             }
         } catch (PowerShellNotAvailableException e) {
@@ -62,7 +63,7 @@ public class PowerShellCommands {
         try {
             PowerShell powerShell = PowerShell.openSession();
             PowerShellResponse rs = null;
-            String script = "/scripts/restartWMS.ps1";
+            String script = "/scripts/restartLicense.ps1";
 
 
             BufferedReader srcReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(script)));
@@ -71,6 +72,7 @@ public class PowerShellCommands {
 
             if (powerShell != null) {
                 powerShell.close();
+                JOptionPane.showMessageDialog(null, "Script executed");
 
             }
         } catch (PowerShellNotAvailableException e) {

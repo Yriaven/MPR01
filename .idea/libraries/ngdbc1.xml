@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="ngdbc1">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/out/production/Electropoli Poland Project/sample/Lib/ngdbc.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
